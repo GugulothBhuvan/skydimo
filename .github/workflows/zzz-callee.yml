@@ -1,0 +1,12 @@
+name: zzz callee
+on:
+  workflow_call:
+    inputs:
+      windows_only:
+        type: boolean
+        default: false
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "windows_only=${{ inputs.windows_only }}"

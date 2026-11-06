@@ -1,0 +1,9 @@
+name: zzz caller
+on:
+  workflow_dispatch:
+jobs:
+  call-it:
+    uses: ./.github/workflows/zzz-callee.yml
+    secrets: inherit
+    with:
+      windows_only: true
