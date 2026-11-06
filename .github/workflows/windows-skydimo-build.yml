@@ -1,0 +1,19 @@
+name: Build Skydimo (Windows installer)
+
+# Skydimo branding patch: a manually-triggered, Windows-only build for this
+# personal fork. See BRANDING.md for what's rebranded and why, and
+# flutter-build.yml's `windows_only` input for how the shared build is scoped
+# down to just the Windows Flutter job for this.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-windows-skydimo-build:
+    uses: ./.github/workflows/flutter-build.yml
+    secrets: inherit
+    with:
+      upload-artifact: true
+      upload-tag: "skydimo"
+      publish-update-metadata: false
+      windows_only: true
