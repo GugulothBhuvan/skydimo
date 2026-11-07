@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Skydimo (personal/unofficial build)" "\0"
-            VALUE "FileDescription", "Skydimo Remote Desktop (unofficial RustDesk build)" "\0"
+            VALUE "CompanyName", "Skydimowindows (personal/unofficial build)" "\0"
+            VALUE "FileDescription", "Skydimowindows Remote Desktop (unofficial RustDesk build)" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "Skydimo" "\0"
+            VALUE "InternalName", "Skydimowindows" "\0"
             VALUE "LegalCopyright", "Based on RustDesk, Copyright © 2026 Purslane Tech Pte. Ltd. Licensed AGPL-3.0." "\0"
-            VALUE "OriginalFilename", "Skydimo.exe" "\0"
-            VALUE "ProductName", "Skydimo" "\0"
+            VALUE "OriginalFilename", "Skydimowindows.exe" "\0"
+            VALUE "ProductName", "Skydimowindows" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

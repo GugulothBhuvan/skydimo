@@ -2595,7 +2595,7 @@ class _AboutState extends State<_About> {
       final scrollController = ScrollController();
       return SingleChildScrollView(
         controller: scrollController,
-        child: _Card(title: 'About Skydimo', children: [
+        child: _Card(title: 'About Skydimowindows', children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2617,7 +2617,7 @@ class _AboutState extends State<_About> {
                       .marginSymmetric(vertical: 4.0)),
               SelectionArea(
                   child: Text(
-                    'Skydimo is an independent, personal build based on the '
+                    'Skydimowindows is an independent, personal build based on the '
                     'open-source RustDesk project. It is not RustDesk / '
                     'Purslane Tech Pte. Ltd., and is not affiliated with or '
                     'endorsed by them.',
@@ -2651,7 +2651,7 @@ class _AboutState extends State<_About> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Skydimo (unofficial build)\n'
+                            'Skydimowindows (unofficial build)\n'
                             'Based on RustDesk, Copyright © ${DateTime.now().toString().substring(0, 4)} Purslane Tech Pte. Ltd.\n'
                             'Licensed under the GNU AGPL-3.0; source and license available at the fork this build came from.\n$license',
                             style: const TextStyle(color: Colors.white),

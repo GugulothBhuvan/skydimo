@@ -500,14 +500,14 @@ jobs:
           msbuild-architecture: ${{ matrix.job.arch == 'aarch64' && 'arm64' || 'x86' }}
 
       - name: Skydimo branding for msi (windows_only builds only)
-        # Skydimo branding patch: give the dist dir a Skydimo.exe so res/msi's
-        # own --app-name white-label mechanism (see res/msi/preprocess.py)
-        # picks it up as the main app file. No-op for the normal nightly/tag
-        # runs, which never set windows_only.
+        # Skydimo branding patch: give the dist dir a Skydimowindows.exe so
+        # res/msi's own --app-name white-label mechanism (see
+        # res/msi/preprocess.py) picks it up as the main app file. No-op for
+        # the normal nightly/tag runs, which never set windows_only.
         if: env.UPLOAD_ARTIFACT == 'true' && inputs.windows_only
         shell: pwsh
         run: |
-          Copy-Item ./rustdesk/rustdesk.exe ./rustdesk/Skydimo.exe -Force
+          Copy-Item ./rustdesk/rustdesk.exe ./rustdesk/Skydimowindows.exe -Force
           Remove-Item ./rustdesk/rustdesk.exe -Force
 
       - name: Build msi
@@ -520,10 +520,11 @@ jobs:
           if ('${{ inputs.windows_only }}' -eq 'true') {
             # Skydimo branding patch: white-label the MSI (Product/shortcuts/service name,
             # Add/Remove Programs entry) via res/msi's own --app-name mechanism.
-            python preprocess.py --arp -d ../../rustdesk --app-name Skydimo --manufacturer Skydimo
+            python preprocess.py --arp -d ../../rustdesk --app-name Skydimowindows --manufacturer Skydimowindows
             # preprocess.py's own RustDesk->app-name substitution on License.rtf would turn
-            # RustDesk's own privacy-policy text into false claims about "Skydimo" processing
-            # data under its own contract; replace it with an accurate, attributed notice instead.
+            # RustDesk's own privacy-policy text into false claims about "Skydimowindows"
+            # processing data under its own contract; replace it with an accurate,
+            # attributed notice instead.
             Copy-Item ./skydimo-license-override.rtf ./Package/License.rtf -Force
           } else {
             python preprocess.py --arp -d ../../rustdesk
@@ -532,7 +533,7 @@ jobs:
           $msiPlatform = if ('${{ matrix.job.arch }}' -eq 'aarch64') { 'ARM64' } else { 'x64' }
           msbuild msi.sln -p:Configuration=Release -p:Platform=$msiPlatform /p:TargetVersion=Windows10
           $msi = Get-ChildItem ./Package/bin/*/Release/en-us/Package.msi | Select-Object -First 1
-          $outName = if ('${{ inputs.windows_only }}' -eq 'true') { '../../SignOutput/Skydimo-${{ env.VERSION }}-${{ matrix.job.arch }}.msi' } else { '../../SignOutput/rustdesk-${{ env.VERSION }}-${{ matrix.job.arch }}.msi' }
+          $outName = if ('${{ inputs.windows_only }}' -eq 'true') { '../../SignOutput/Skydimowindows-${{ env.VERSION }}-${{ matrix.job.arch }}.msi' } else { '../../SignOutput/rustdesk-${{ env.VERSION }}-${{ matrix.job.arch }}.msi' }
           mv $msi.FullName $outName
           sha256sum $outName
 
@@ -629,9 +630,9 @@ jobs:
         if: env.UPLOAD_ARTIFACT == 'true' && inputs.windows_only
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: skydimo-windows-${{ matrix.job.arch }}
+          name: skydimowindows-windows-${{ matrix.job.arch }}
           path: |
-            ./SignOutput/Skydimo-*.msi
+            ./SignOutput/Skydimowindows-*.msi
             ./SignOutput/rustdesk-*.exe
           if-no-files-found: error
 

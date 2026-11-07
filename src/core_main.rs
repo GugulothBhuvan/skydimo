@@ -47,7 +47,10 @@ pub fn core_main() -> Option<CoreMainAction> {
     // rather than in the hbb_common submodule, to avoid needing a parallel
     // fork of that submodule's own repo. Must run before global_init(), which
     // uses the app name for the log directory. See BRANDING.md.
-    *config::APP_NAME.write().unwrap() = "Skydimo".to_owned();
+    // Named "Skydimowindows" (not plain "Skydimo") because the maintainer has
+    // a separate, unrelated app also called Skydimo; this avoids colliding
+    // with its install folder, Start Menu entry and config directory.
+    *config::APP_NAME.write().unwrap() = "Skydimowindows".to_owned();
     if !crate::common::global_init() {
         return None;
     }
