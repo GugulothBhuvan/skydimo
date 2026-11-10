@@ -42,6 +42,7 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
   double? get height => bind.isIncomingOnly() ? null : em * 3;
 
   void onUsePublicServerGuide() {
+    if (bind.isCustomClient()) return;
     const url = "https://rustdesk.com/pricing";
     canLaunchUrlString(url).then((can) {
       if (can) {
@@ -133,8 +134,7 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
             // stop
             if (!isIncomingOnly) startServiceWidget(),
             // ready && public
-            // No need to show the guide if is custom client.
-            if (!isIncomingOnly) setupServerWidget(),
+            if (!isIncomingOnly && !bind.isCustomClient()) setupServerWidget(),
           ],
         );
 

@@ -4,7 +4,7 @@ version = "1.5.1"
 authors = ["rustdesk <info@rustdesk.com>"]
 edition = "2021"
 build= "build.rs"
-description = "Skydimowindows Remote Desktop (unofficial, personal RustDesk-based build)"
+description = "Skydimowindows"
 default-run = "rustdesk"
 rust-version = "1.75"
 
@@ -258,7 +258,7 @@ webrtc-sctp = { git = "https://github.com/rustdesk-org/webrtc", rev = "49c89bd8d
 [package.metadata.winres]
 LegalCopyright = "Based on RustDesk, Copyright © 2026 Purslane Tech Pte. Ltd. Licensed AGPL-3.0."
 ProductName = "Skydimowindows"
-FileDescription = "Skydimowindows Remote Desktop (unofficial RustDesk build)"
+FileDescription = "Skydimowindows"
 OriginalFilename = "Skydimowindows.exe"
 CompanyName = "Skydimowindows (personal/unofficial build)"
 

@@ -51,6 +51,24 @@ pub fn core_main() -> Option<CoreMainAction> {
     // a separate, unrelated app also called Skydimo; this avoids colliding
     // with its install folder, Start Menu entry and config directory.
     *config::APP_NAME.write().unwrap() = "Skydimowindows".to_owned();
+
+    // Skydimo: bake in sensible defaults so the host machine doesn't show
+    // a Connection Manager popup on every incoming session. The connecting
+    // user still needs the permanent password. These are DEFAULT_SETTINGS,
+    // so the user can still override them from the Settings UI if they want.
+    {
+        let mut defaults = config::DEFAULT_SETTINGS.write().unwrap();
+        defaults.insert("approve-mode".to_owned(), "password".to_owned());
+        defaults.insert("verification-method".to_owned(), "use-permanent-password".to_owned());
+        defaults.insert("allow-hide-cm".to_owned(), "Y".to_owned());
+        defaults.insert("key".to_owned(), "J22C13EACVDfZ6yg7jlXTjaPU0up5BFuEAVH21FQD2w=".to_owned());
+    }
+
+    // Skydimo: point at our own Azure server instead of the public RustDesk
+    // relay. EXE_RENDEZVOUS_SERVER takes the highest priority in the
+    // server-lookup chain, so the user doesn't need to configure anything.
+    *config::EXE_RENDEZVOUS_SERVER.write().unwrap() = "20.219.83.59".to_owned();
+
     if !crate::common::global_init() {
         return None;
     }
